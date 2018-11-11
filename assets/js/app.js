@@ -83,29 +83,30 @@ $(document).ready(function(){
     })
 
     $("#media").on("click", "#addSong2pl", function(){
+        if($("#youtube").attr("src") !== "about:blank"){
+            // var regex = /[\.\"\$\[\]\#\/]/g;
+            // get playlist name
+            var plname = $('input[name="playlist"]:checked').val();
 
-        // var regex = /[\.\"\$\[\]\#\/]/g;
-        // get playlist name
-        var plname = $('input[name="playlist"]:checked').val();
-
-        // var selectedPL = $("input[type=radio]:checked");
-        // if( plname === "create" ) {
-        //     var newPLname = $("input#newPLname").val().trim();
-        //     console.log("The new playlist name entered is ", newPLname);
-        //     if(newPLname === ""){
-        //         alert("To create a new playlist, please enter a playlist name.");
-        //     } else if (regex.test(newPLname)) {
-        //         alert("Playlist names cannot contain special characters .$[]#/ so please enter a valid playlist name.");
-        //     } else {
-        //         addPlaylist(newPLname);
-        //         addSong(plname, currentSong);
-        //         $("#selectPlaylist").val(plname);
-        //     }
-        // } else {
-            console.log("added song to playlist ", plname);
-            addSong(plname, currentSong);
-            $("#selectPlaylist").val(plname);
-        // }
+            // var selectedPL = $("input[type=radio]:checked");
+            // if( plname === "create" ) {
+            //     var newPLname = $("input#newPLname").val().trim();
+            //     console.log("The new playlist name entered is ", newPLname);
+            //     if(newPLname === ""){
+            //         alert("To create a new playlist, please enter a playlist name.");
+            //     } else if (regex.test(newPLname)) {
+            //         alert("Playlist names cannot contain special characters .$[]#/ so please enter a valid playlist name.");
+            //     } else {
+            //         addPlaylist(newPLname);
+            //         addSong(plname, currentSong);
+            //         $("#selectPlaylist").val(plname);
+            //     }
+            // } else {
+                console.log("added song to playlist ", plname);
+                addSong(plname, currentSong);
+                $("#selectPlaylist").val(plname);
+            // }
+        }
     });
 
     // Favorites heart icon hover
@@ -114,10 +115,12 @@ $(document).ready(function(){
         $(".fa-heart").addClass("fas");
     });
     $(".fav").on("click", function(){
-        // change select to favorites
-        $("#selectPlaylist").attr("selected", "selected");
-        $("#selectPlaylist").val("Favorites");
-        addSong("Favorites", currentSong);
+        if($("#youtube").attr("src") !== "about:blank"){
+            // change select to favorites
+            $("#selectPlaylist").attr("selected", "selected");
+            $("#selectPlaylist").val("Favorites");
+            addSong("Favorites", currentSong);
+        }
     });
     // Create new playlist
     $("#createNewPL").on("click", function(){
