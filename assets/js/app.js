@@ -138,7 +138,7 @@ $(document).ready(function(){
     // delete playlist MODAL
     $("i.fa-trash-alt").on("click", function(){
         var plname = $(this).siblings().val();
-        if(plname !== "empty"){
+        if(plname !== "empty" && $("#selectePlaylist").val() !== "Favorites"){
             $(".modal-title").text(plname);
             var confirmation = $('#deletePlaylist').modal();
         }
