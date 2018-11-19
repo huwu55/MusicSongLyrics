@@ -49,30 +49,31 @@ $(document).ready(function(){
     });
 
     $('.add2PL').on("click", function(){
+        if($("#youtube").attr("src") !== "about:blank"){
+            var radioGroup, plLabel, idVal, newline;
+            var plists = getPlaylistNames();
+            $("#add-song-modal").empty();
 
-        var radioGroup, plLabel, idVal, newline;
-        var plists = getPlaylistNames();
-        $("#add-song-modal").empty();
-
-        if (plists.length === 0){
-            $("#add-song-modal").text("You have not made any playlists yet.")
-        } else {
-        plists.forEach((list, count) => {
-            list.toString().padStart(3, " ");
-            idVal = "r" + count;
-            radioGroup = $("<input>").attr({type: "radio", class: "plsradios", id: idVal, value: list, name: "playlist"});
-            plLabel = $("<label>").attr("for", idVal).text(list).css("margin-left", "8px");
-            newline = $("<br />");
-            $("#add-song-modal").append(radioGroup).append(plLabel).append(newline);
-            // if( count === plists.length - 1 ){
-            //     idVal = "r" + plists.length;
-            //     var createNewPL = $("<input>").attr({type: "radio", class: "plsradios", id: idVal, value: "create", name: "playlist"});
-            //     var name = $("<input>").attr({type: "text", id: "newPLname", size: "300", placeholder: "Enter playlist name"}).css("margin-left", "8px");
-            //     name.attr("id", "newPLname");
-            //     console.log("TESTING NAME HERE ", name);
-            //     $(".modal-body").append(createNewPL).append(name);
-            // }
-        });
+            if (plists.length === 0){
+                $("#add-song-modal").text("You have not made any playlists yet.")
+            } else {
+            plists.forEach((list, count) => {
+                list.toString().padStart(3, " ");
+                idVal = "r" + count;
+                radioGroup = $("<input>").attr({type: "radio", class: "plsradios", id: idVal, value: list, name: "playlist"});
+                plLabel = $("<label>").attr("for", idVal).text(list).css("margin-left", "8px");
+                newline = $("<br />");
+                $("#add-song-modal").append(radioGroup).append(plLabel).append(newline);
+                // if( count === plists.length - 1 ){
+                //     idVal = "r" + plists.length;
+                //     var createNewPL = $("<input>").attr({type: "radio", class: "plsradios", id: idVal, value: "create", name: "playlist"});
+                //     var name = $("<input>").attr({type: "text", id: "newPLname", size: "300", placeholder: "Enter playlist name"}).css("margin-left", "8px");
+                //     name.attr("id", "newPLname");
+                //     console.log("TESTING NAME HERE ", name);
+                //     $(".modal-body").append(createNewPL).append(name);
+                // }
+            });
+            }
         }
     });
 
@@ -83,29 +84,30 @@ $(document).ready(function(){
     })
 
     $("#media").on("click", "#addSong2pl", function(){
+        if($("#youtube").attr("src") !== "about:blank"){
+            // var regex = /[\.\"\$\[\]\#\/]/g;
+            // get playlist name
+            var plname = $('input[name="playlist"]:checked').val();
 
-        // var regex = /[\.\"\$\[\]\#\/]/g;
-        // get playlist name
-        var plname = $('input[name="playlist"]:checked').val();
-
-        // var selectedPL = $("input[type=radio]:checked");
-        // if( plname === "create" ) {
-        //     var newPLname = $("input#newPLname").val().trim();
-        //     console.log("The new playlist name entered is ", newPLname);
-        //     if(newPLname === ""){
-        //         alert("To create a new playlist, please enter a playlist name.");
-        //     } else if (regex.test(newPLname)) {
-        //         alert("Playlist names cannot contain special characters .$[]#/ so please enter a valid playlist name.");
-        //     } else {
-        //         addPlaylist(newPLname);
-        //         addSong(plname, currentSong);
-        //         $("#selectPlaylist").val(plname);
-        //     }
-        // } else {
-            console.log("added song to playlist ", plname);
-            addSong(plname, currentSong);
-            $("#selectPlaylist").val(plname);
-        // }
+            // var selectedPL = $("input[type=radio]:checked");
+            // if( plname === "create" ) {
+            //     var newPLname = $("input#newPLname").val().trim();
+            //     console.log("The new playlist name entered is ", newPLname);
+            //     if(newPLname === ""){
+            //         alert("To create a new playlist, please enter a playlist name.");
+            //     } else if (regex.test(newPLname)) {
+            //         alert("Playlist names cannot contain special characters .$[]#/ so please enter a valid playlist name.");
+            //     } else {
+            //         addPlaylist(newPLname);
+            //         addSong(plname, currentSong);
+            //         $("#selectPlaylist").val(plname);
+            //     }
+            // } else {
+                console.log("added song to playlist ", plname);
+                addSong(plname, currentSong);
+                $("#selectPlaylist").val(plname);
+            // }
+        }
     });
 
     // Favorites heart icon hover
@@ -114,10 +116,12 @@ $(document).ready(function(){
         $(".fa-heart").addClass("fas");
     });
     $(".fav").on("click", function(){
-        // change select to favorites
-        $("#selectPlaylist").attr("selected", "selected");
-        $("#selectPlaylist").val("Favorites");
-        addSong("Favorites", currentSong);
+        if($("#youtube").attr("src") !== "about:blank"){
+            // change select to favorites
+            $("#selectPlaylist").attr("selected", "selected");
+            $("#selectPlaylist").val("Favorites");
+            addSong("Favorites", currentSong);
+        }
     });
     // Create new playlist
     $("#createNewPL").on("click", function(){
@@ -138,7 +142,7 @@ $(document).ready(function(){
     // delete playlist MODAL
     $("i.fa-trash-alt").on("click", function(){
         var plname = $(this).siblings().val();
-        if(plname !== "empty"){
+        if(plname !== "empty" && $("#selectPlaylist").val() !== "Favorites"){
             $(".modal-title").text(plname);
             var confirmation = $('#deletePlaylist').modal();
         }
