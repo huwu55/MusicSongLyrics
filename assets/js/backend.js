@@ -15,11 +15,14 @@ var currentSong = {
     thumbnailPicURL : ""
 };
 
-require("dotenv").config();
+//require("dotenv").config();
 // console.log(process.env.LYRICS_API);
 // console.log(process.env.YOUTUBE_API);
-lyricsAPI = "apikey="+process.env.LYRICS_API;
-youtubeAPI = "key="+process.env.YOUTUBE_API;
+// lyricsAPI = "apikey="+process.env.LYRICS_API;
+// youtubeAPI = "key="+process.env.YOUTUBE_API;
+
+lyricsAPI = "apikey=WqDoIeBpeU4ukATNPeujatZc7kLftvkhAsogshZ0CX29WAerDXfeNnI6bjZBuzCP";
+youtubeAPI = "key=AIzaSyAkAY0BtGDAhFm0c8vx-0rMGH1-TMoFzkk";
 
 // Initialize Firebase
 var config = {
