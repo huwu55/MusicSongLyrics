@@ -45,13 +45,5 @@ For users who aim to sing more in their domestic life, the app aims to pair arti
 - Collaboration of the team
 - Presentation made (10 minutes)
 
-# Awards
-- Most awe-inspiring
-- Most useful
-- Most creative
-- Best use of tech
-- Best ui/ux
-- Most hilarious
-- Most disruptive
-- Most fun
+
 
